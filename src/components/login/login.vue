@@ -1,6 +1,6 @@
 <template>
-  <div id="home">
-      我是home
+  <div class="login">
+      denglu 
   </div>
 </template>
 
