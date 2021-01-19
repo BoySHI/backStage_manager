@@ -19,23 +19,26 @@
 // import request from '../../utils/request'
 import { login } from '../../api/user'
 export default {
-data() {
-  return {
-    user: {
-      mobile: '',
-      code: ''
-    },
-    checked: false,
-    loginLoading: false
-  }
-},
+  name: 'Login',
+  data() {
+    return {
+      user: {
+        mobile: '13911111111',
+        code: '246810'
+      },
+      checked: false,
+      loginLoading: false
+    }
+  },
 methods: {
   onLogin() {
     // const user = this.user
     this.loginLoading = true
     login(this.user).then(res=>{
       console.log(res);
-      this.loginLoading = false
+      this.loginLoading = false  // 登录成功按钮的loading状态关闭
+      window.localStorage.setItem('user', JSON.stringify(res.data.data)) // 本地存储用户的token
+      // 登录成功提示消息
       this.$message({
       message: '恭喜你，登录成功',
       type: 'success'
@@ -44,6 +47,7 @@ methods: {
     }).catch(err=> {
       this.loginLoading = false
       console.log(err);
+      // 登录失败提示消息
       this.$message({
         message: '登录失败，用户名或验证码失败',
         type: 'warning'
