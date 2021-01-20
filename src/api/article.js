@@ -24,3 +24,15 @@ export const deleteArticle = articleId => {
         url: `v1_0/articles/${articleId}`
     })
 }
+
+// 发表文章
+export const publishArticles = (data, draft = false) => {
+    return request({
+        method: 'POST',
+        url: 'v1_0/articles',
+        params: { // query参数由params传递
+            draft
+        },
+        data
+    })
+}

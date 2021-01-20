@@ -97,7 +97,7 @@
                 size="mini"
                 circle
               >
-               <i class="el-icon-edit"></i>
+               <i class="el-icon-edit"  @click="$router.push('/publish?id='+ scope.row.id)"></i>
               </el-button>
               <el-button
                 size="mini"
@@ -111,7 +111,7 @@
         </el-table>
         <!-- 分页 -->
         <el-pagination
-          @current-change="onCurrentChange()"
+          @current-change="onCurrentChange(page)"
           :disabled="loading"
           :current-page.sync="page"
           background
@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import {getArticle,getArticleChannels,deleteArticle} from '../../api/article'
+import {getArticle,getArticleChannels,deleteArticle} from '@/api/article'
 export default {
   name:'Article',
   data() {
@@ -149,7 +149,7 @@ export default {
       channelId: null, // 查询文章的频道
       rangeDate: null,  // 查询的时间范围
       loading: true,  // 请求数据加载中
-      page: 1
+      page: 1,
     }
   },
   created() {
@@ -192,9 +192,13 @@ export default {
       cancelButtonText: '取消',
       type: 'warning'
     }).then(() => {
-      deleteArticle(articleId).then(res=>{
+      deleteArticle(articleId.toString()).then(res=>{
         console.log(res);
         this.loadArticle(this.page)
+         this.$message({
+          message: '删除成功',
+          type: 'success'
+      })
       })
     }).catch(() => {
       // this.$message({

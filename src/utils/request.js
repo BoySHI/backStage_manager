@@ -2,9 +2,20 @@
  * 基于axios封装的请求模块
  */
 import axios from 'axios'
+// import JSONbig from 'json-bigint'
 
 const request = axios.create({
-    baseURL: 'http://api-toutiao-web.itheima.net/mp/'
+    baseURL: 'http://api-toutiao-web.itheima.net/mp/',
+
+    // 定制后端返回的原始数据处理，data为未经过处理的后端的字符串数据
+    // transformRequest: [function(data, headers) {
+    //     // Do whatever you want to transform the data
+    //     try {
+    //         return JSONbig.parse(data);
+    //     } catch (err) {
+    //         return data
+    //     }
+    // }]
 })
 
 // 请求拦截器

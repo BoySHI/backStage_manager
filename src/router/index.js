@@ -9,22 +9,47 @@ const routes = [{
         path: '/login',
         name: 'Login',
         component: () =>
-            import ('../components/login/login.vue')
+            import ('@/components/login/login.vue')
     },
     {
         path: '/',
         component: () =>
-            import ('../views/layout/layout.vue'),
+            import ('@/views/layout/layout.vue'),
         children: [{
             path: '/',
             name: 'Home',
             component: () =>
-                import ('../views/home/home.vue')
+                import ('@/views/home/home.vue')
         }, {
             path: '/article',
             name: 'Article',
             component: () =>
-                import ('../views/article/article.vue')
+                import ('@/views/article/article.vue')
+        }, {
+            path: '/publish',
+            name: 'PublishedArticles',
+            component: () =>
+                import ('@/views/publish/published-articles.vue')
+        }, {
+            path: '/material',
+            name: 'Material',
+            component: () =>
+                import ('@/views/material/material.vue')
+        }, {
+            path: 'comment',
+            name: 'Comment',
+            component: () =>
+                import ('@/views/comment/comment.vue')
+        }, {
+            path: '/fans',
+            name: 'Fans',
+            component: () =>
+                import ('@/views/fans/fans.vue')
+        }, {
+            path: '/settings',
+            name: 'Settings',
+            component: () =>
+                import ('@/views/settings/settings.vue')
         }]
     }
 ]
