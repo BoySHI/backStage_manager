@@ -36,3 +36,21 @@ export const publishArticles = (data, draft = false) => {
         data
     })
 }
+
+// 获取指定文章内容
+export const getArticles = articleId => {
+    return request({
+        method: 'GET',
+        url: `v1_0/articles/${articleId}`
+    })
+}
+
+// 修改文章 
+export const updataArticle = (articleId, data, draft = false) => {
+    return request({
+        method: 'PUT',
+        url: `v1_0/articles/${articleId}`,
+        params: { draft },
+        data
+    })
+}

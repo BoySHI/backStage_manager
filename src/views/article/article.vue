@@ -9,7 +9,7 @@
         </el-breadcrumb>
       </div>
       <!-- 数据筛选表单 -->
-      <el-form ref="form" :model="form" label-width="40px" size="mini">
+      <el-form ref="form"  label-width="40px" size="mini">
         <el-form-item label="状态">
           <el-radio-group v-model="status" size="medium">
             <el-radio :label="null">全部</el-radio>
@@ -97,7 +97,7 @@
                 size="mini"
                 circle
               >
-               <i class="el-icon-edit"  @click="$router.push('/publish?id='+ scope.row.id)"></i>
+               <i class="el-icon-edit"  @click="$router.push('/publish?id='+scope.row.id)"></i>
               </el-button>
               <el-button
                 size="mini"
@@ -128,13 +128,6 @@ export default {
   name:'Article',
   data() {
   return {
-    form: {
-        name: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
       articles: [], //文章列表数据
       articleStatus: [
         {status: 0, text: '草稿', type: ''},
