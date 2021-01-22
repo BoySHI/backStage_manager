@@ -28,7 +28,7 @@
           />
         </el-form-item>
         <el-form-item label="封面">
-          <el-radio-group v-model="article.cover.type">
+          <el-radio-group v-model="article.cover">
             <el-radio :label="0">无图</el-radio>
             <el-radio :label="1">单图</el-radio>
             <el-radio :label="3">三图</el-radio>
@@ -137,11 +137,11 @@ export default {
         ],
         channel_id: [{ required: true, message: "请选择频道类别" }],
       },
-    }
+    };
   },
   created() {
-    this.loadArticleChannels()
-    this.loadArticle()
+    this.loadArticleChannels();
+    this.loadArticle();
   },
   methods: {
     // 发表文章
