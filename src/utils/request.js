@@ -2,6 +2,7 @@
  * 基于axios封装的请求模块
  */
 import axios from 'axios'
+import router from '@/router'
 // import JSONbig from 'json-bigint'
 
 const request = axios.create({
@@ -35,4 +36,18 @@ request.interceptors.request.use(
         return Promise.reject(err)
     }
 )
+
+// 响应拦截器
+request.interceptors.response.use((res) => {
+    return res
+}, (err) => {
+    console.log(err)
+    if (err.res && err.res.status === 401) {
+        // 清除本地存储
+        window.localStorage.removeItem('user')
+            // 跳转到登录页面
+        router.push('/login')
+    }
+    return Promise.reject(err)
+})
 export default request

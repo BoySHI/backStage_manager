@@ -1,13 +1,14 @@
 <template>
   <el-menu
-    default-active="/"
+    :default-active="$route.path"
     class="asides-menu"
     background-color="#002033"
     text-color="#fff"
     active-text-color="#ffd04b"
     router
-    :collapse="isCollapse">
-   <el-menu-item index="/">
+    :collapse="isCollapse"
+  >
+    <el-menu-item index="/">
       <i class="el-icon-setting"></i>
       <span slot="title">首页</span>
     </el-menu-item>
@@ -40,18 +41,16 @@
 
 <script>
 export default {
-  props:['is-collapse'],
+  props: ['is-collapse'],
   data() {
-    return {
-    }
+    return {}
   },
-   methods: {
-  }
+  methods: {}
 }
 </script>
 
 <style lang="less" scoped>
-  .asides-menu{
-    height: 100%;
-  }
+.asides-menu {
+  height: 100%;
+}
 </style>
