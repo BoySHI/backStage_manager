@@ -35,51 +35,59 @@
 </template>
 
 <script>
-import asides from "./coms/asides";
-import { getUserProfile } from "../../api/user";
+import globalBus from '@/utils/global-bus'
+import asides from './coms/asides'
+import { getUserProfile } from '../../api/user'
+
 export default {
-  name: "Layout",
+  name: 'Layout',
   components: {
-    asides,
+    asides
   },
   data() {
     return {
       user: {}, // 当前用户登录信息
-      isCollapse: false, // 控制隐藏显示侧边栏
-    };
+      isCollapse: false // 控制隐藏显示侧边栏
+    }
   },
   created() {
-    this.loadUserProfile();
+    this.loadUserProfile()
+    // 利用事件总线更新header上的用户的头像和名称
+    globalBus.$on('updataInfor', (data) => {
+      // console.log(data)
+      this.user.name = data.name
+      this.user.photo = data.photo
+    })
   },
   methods: {
     loadUserProfile() {
       getUserProfile().then((res) => {
         // console.log(res);
-        this.user = res.data.data;
-      });
+        this.user = res.data.data
+      })
     },
     // 用户退出，弹出提示弹窗
     onLogout() {
       //提示弹窗
-      this.$confirm("此操作将会退出登录, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
+      this.$confirm('此操作将会退出登录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           // 完成退出操作
-          window.localStorage.removeItem("user");
-          this.$router.push("/login");
+          window.localStorage.removeItem('user')
+          this.$router.push('/login')
         })
         .catch(() => {
           // this.$message({
           //   type: 'info',
           //   message: '已取消退出'
           //   })
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
   
 <style lang="less" scoped>
